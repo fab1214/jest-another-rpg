@@ -4,8 +4,6 @@ jest.mock('../lib/Potion');
 
 //import Player function from Player.js
 const Player = require('../lib/Player');
-const { test, expect } = require('@jest/globals');
-const { pipelinePrimaryTopicReference } = require('@babel/types');
 
 //test player object function
 test('creates a player object', () => {
@@ -19,6 +17,7 @@ test('creates a player object', () => {
         expect.arrayContaining([expect.any(Object)])
     );
 });
+
 
 //test player stats 
 test("gets a player's stats as an object", () => {
@@ -39,6 +38,13 @@ test("gets inventory from player or returns false", () => {
     //return false
     expect(player.getInventory()).toEqual(false);
 });
+
+//test player health value
+test("gets player's health value", () => {
+    const player = new Player('Louie');
+  
+    expect(player.getHealth()).toEqual(expect.stringContaining(player.health.toString()));
+  });
 
 //test if player is alive
 test('checks if player is alive or not', () => {
